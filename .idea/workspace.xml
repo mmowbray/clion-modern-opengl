@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
+    <generated>
+      <config projectName="clion_modern_opengl" targetName="clion_modern_opengl" />
+    </generated>
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="true">
+    <configurations>
+      <configuration CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1a23c56a-3a00-4a84-8345-bc6265173550" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="64">
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="288">
+                <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cpp/main.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1817">
+              <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GLSLProgram.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/cpp/GLSLProgram.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="227">
+              <caret line="201" column="36" lean-forward="false" selection-start-line="201" selection-start-column="36" selection-end-line="201" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#24#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GLSLProgram.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/include/GLSLProgram.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="112">
+              <caret line="7" column="18" lean-forward="false" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+              <folding>
+                <element signature="e#85#102#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>del</find>
+      <find>#include &quot;GLSLProgram.h&quot;#include &lt;vector&gt;#include &lt;fstream&gt;#include &quot;glm/gtc/type_ptr.hpp&quot;using glm::vec3;using glm::vec4;using glm::mat3;using glm::mat4;GLSLProgram::GLSLProgram(){    handle = glCreateProgram();    linked = false;}bool GLSLProgram::compileShaderFromString(const string &amp; source, GLuint type){    GLuint shaderID = glCreateShader(type);    // Compile Shader    char const * SourcePointer = source.c_str();    glShaderSource(shaderID, 1, &amp;SourcePointer, nullptr);    glCompileShader(shaderID);    // Check if the compiling worked    GLint isCompiled = 0;    glGetShaderiv(shaderID, GL_COMPILE_STATUS, &amp;isCompiled);    if (isCompiled == GL_TRUE)    {        //linked = true;        glAttachShader(handle, shaderID);        printf(&quot;Shader compiled successfully.\n&quot;);        return true;    }    else    {        GLint maxLength = 0;        glGetShaderiv(shaderID, GL_INFO_LOG_LENGTH, &amp;maxLength);        if (maxLength &gt; 0) {            std::vector&lt;char&gt; infoLog(maxLength + 1);            glGetShaderInfoLog(shaderID, maxLength, nullptr, infoLog.data());            logString = string(std::begin(infoLog), std::end(infoLog));            printf(&quot;One or more error were encountered while compiling this shader.\n&quot;);        }        return false;    }}bool GLSLProgram::compileShaderFromFile(const char * fileName, GLuint type){    if(fileExists(fileName))    {        string shaderCode;        std::ifstream ShaderStream(fileName, std::ios::in);        if (ShaderStream.is_open()) {            std::string Line = &quot;&quot;;            while (getline(ShaderStream, Line))                shaderCode += &quot;\n&quot; + Line;            ShaderStream.close();            return compileShaderFromString(shaderCode, type);        }        return true;    }else{        logString = &quot;The specified shader file was not found.&quot;;    }    return false;}bool GLSLProgram::link(){    glLinkProgram(handle);    // Check if the linking worked    GLint isLinked = 0;    glGetProgramiv(handle, GL_LINK_STATUS, &amp;isLinked);    if(isLinked == GL_TRUE)    {        linked = true;        printf(&quot;Shader program linked successfully.\n&quot;);    }else    {        GLint maxLength = 0;        glGetProgramiv(handle, GL_INFO_LOG_LENGTH, &amp;maxLength);        std::vector&lt;char&gt; infoLog(maxLength);        glGetShaderInfoLog(handle, maxLength, NULL, infoLog.data());        logString = string(begin(infoLog), end(infoLog));        //The program is useless now.        glDeleteProgram(handle);    }    return linked;}void GLSLProgram::use(){    if (linked)        glUseProgram(handle);}string GLSLProgram::log(){    return logString;}int GLSLProgram::getHandle(){    return handle;}bool GLSLProgram::isLinked(){    return linked;}void GLSLProgram::bindAttribLocation(GLuint location, const char * name){    glBindAttribLocation(handle, location, name);}void GLSLProgram::bindFragDataLocation(GLuint location, const char * name){    glBindFragDataLocation(handle, location, name);}void GLSLProgram::setUniform(const char *name, float x, float y, float z){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform3f(location, x, y, z);}void GLSLProgram::setUniform(const char *name, const vec3 &amp; v){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform3fv(location, 1, value_ptr(v));}void GLSLProgram::setUniform(const char *name, const vec4 &amp; v){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform4fv(location, 1, value_ptr(v));}void GLSLProgram::setUniform(const char *name, const mat4 &amp; m){    GLint location = getUniformLocation(name);    if (location != -1)        glUniformMatrix4fv(location, 1, GL_FALSE, value_ptr(m));}void GLSLProgram::setUniform(const char *name, const mat3 &amp; m){    GLint location = getUniformLocation(name);    if (location != -1)        glUniformMatrix3fv(location, 1, GL_FALSE, value_ptr(m));}void GLSLProgram::setUniform(const char *name, float val){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform1f(location, val);}void GLSLProgram::setUniform(const char *name, int val){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform1i(location, val);}void GLSLProgram::setUniform(const char *name, bool val){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform1i(location, val);}void GLSLProgram::printActiveUniforms(){    GLint i;    GLint count;    GLint size; // size of the variable    GLenum type; // type of the variable (float, vec3 or mat4, etc)    const GLsizei bufSize = 32; // maximum name length    GLchar name[bufSize]; // variable name in GLSL    GLsizei length; // name length    glGetProgramiv(handle, GL_ACTIVE_UNIFORMS, &amp;count);    printf(&quot;Active Uniforms: %d\n&quot;, count);    for (i = 0; i &lt; count; i++)    {        glGetActiveUniform(handle, (GLuint)i, bufSize, &amp;length, &amp;size, &amp;type, name);        printf(&quot;Uniform #%d Type: %u Name: %s\n&quot;, i, type, name);    }}void GLSLProgram::printActiveAttribs(){    GLint i;    GLint count;    GLint size; // size of the variable    GLenum type; // type of the variable (float, vec3 or mat4, etc)    const GLsizei bufSize = 32; // maximum name length    GLchar name[bufSize]; // variable name in GLSL    GLsizei length; // name length    glGetProgramiv(handle, GL_ACTIVE_ATTRIBUTES, &amp;count);    printf(&quot;Active Attributes: %d\n&quot;, count);    for (i = 0; i &lt; count; i++)    {        glGetActiveAttrib(handle, (GLuint)i, bufSize, &amp;length, &amp;size, &amp;type, name);        printf(&quot;Attribute #%d Type: %u Name: %s\n&quot;, i, type, name);    }}bool GLSLProgram::fileExists(const string &amp; fileName){    std::ifstream infile(fileName);    return infile.good();}int GLSLProgram::getUniformLocation(const char * name){    return glGetUniformLocation(handle, name);}#include &quot;GLSLProgram.h&quot;#include &lt;vector&gt;#include &lt;fstream&gt;#include &quot;glm/gtc/type_ptr.hpp&quot;using glm::vec3;using glm::vec4;using glm::mat3;using glm::mat4;GLSLProgram::GLSLProgram(){    handle = glCreateProgram();    linked = false;}bool GLSLProgram::compileShaderFromString(const string &amp; source, GLuint type){    GLuint shaderID = glCreateShader(type);    // Compile Shader    char const * SourcePointer = source.c_str();    glShaderSource(shaderID, 1, &amp;SourcePointer, nullptr);    glCompileShader(shaderID);    // Check if the compiling worked    GLint isCompiled = 0;    glGetShaderiv(shaderID, GL_COMPILE_STATUS, &amp;isCompiled);    if (isCompiled == GL_TRUE)    {        //linked = true;        glAttachShader(handle, shaderID);        printf(&quot;Shader compiled successfully.\n&quot;);        return true;    }    else    {        GLint maxLength = 0;        glGetShaderiv(shaderID, GL_INFO_LOG_LENGTH, &amp;maxLength);        if (maxLength &gt; 0) {            std::vector&lt;char&gt; infoLog(maxLength + 1);            glGetShaderInfoLog(shaderID, maxLength, nullptr, infoLog.data());            logString = string(std::begin(infoLog), std::end(infoLog));            printf(&quot;One or more error were encountered while compiling this shader.\n&quot;);        }        return false;    }}bool GLSLProgram::compileShaderFromFile(const char * fileName, GLuint type){    if(fileExists(fileName))    {        string shaderCode;        std::ifstream ShaderStream(fileName, std::ios::in);        if (ShaderStream.is_open()) {            std::string Line = &quot;&quot;;            while (getline(ShaderStream, Line))                shaderCode += &quot;\n&quot; + Line;            ShaderStream.close();            return compileShaderFromString(shaderCode, type);        }        return true;    }else{        logString = &quot;The specified shader file was not found.&quot;;    }    return false;}bool GLSLProgram::link(){    glLinkProgram(handle);    // Check if the linking worked    GLint isLinked = 0;    glGetProgramiv(handle, GL_LINK_STATUS, &amp;isLinked);    if(isLinked == GL_TRUE)    {        linked = true;        printf(&quot;Shader program linked successfully.\n&quot;);    }else    {        GLint maxLength = 0;        glGetProgramiv(handle, GL_INFO_LOG_LENGTH, &amp;maxLength);        std::vector&lt;char&gt; infoLog(maxLength);        glGetShaderInfoLog(handle, maxLength, NULL, infoLog.data());        logString = string(begin(infoLog), end(infoLog));        //The program is useless now.        glDeleteProgram(handle);    }    return linked;}void GLSLProgram::use(){    if (linked)        glUseProgram(handle);}string GLSLProgram::log(){    return logString;}int GLSLProgram::getHandle(){    return handle;}bool GLSLProgram::isLinked(){    return linked;}void GLSLProgram::bindAttribLocation(GLuint location, const char * name){    glBindAttribLocation(handle, location, name);}void GLSLProgram::bindFragDataLocation(GLuint location, const char * name){    glBindFragDataLocation(handle, location, name);}void GLSLProgram::setUniform(const char *name, float x, float y, float z){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform3f(location, x, y, z);}void GLSLProgram::setUniform(const char *name, const vec3 &amp; v){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform3fv(location, 1, value_ptr(v));}void GLSLProgram::setUniform(const char *name, const vec4 &amp; v){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform4fv(location, 1, value_ptr(v));}void GLSLProgram::setUniform(const char *name, const mat4 &amp; m){    GLint location = getUniformLocation(name);    if (location != -1)        glUniformMatrix4fv(location, 1, GL_FALSE, value_ptr(m));}void GLSLProgram::setUniform(const char *name, const mat3 &amp; m){    GLint location = getUniformLocation(name);    if (location != -1)        glUniformMatrix3fv(location, 1, GL_FALSE, value_ptr(m));}void GLSLProgram::setUniform(const char *name, float val){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform1f(location, val);}void GLSLProgram::setUniform(const char *name, int val){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform1i(location, val);}void GLSLProgram::setUniform(const char *name, bool val){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform1i(location, val);}void GLSLProgram::printActiveUniforms(){    GLint i;    GLint count;    GLint size; // size of the variable    GLenum type; // type of the variable (float, vec3 or mat4, etc)    const GLsizei bufSize = 32; // maximum name length    GLchar name[bufSize]; // variable name in GLSL    GLsizei length; // name length    glGetProgramiv(handle, GL_ACTIVE_UNIFORMS, &amp;count);    printf(&quot;Active Uniforms: %d\n&quot;, count);    for (i = 0; i &lt; count; i++)    {        glGetActiveUniform(handle, (GLuint)i, bufSize, &amp;length, &amp;size, &amp;type, name);        printf(&quot;Uniform #%d Type: %u Name: %s\n&quot;, i, type, name);    }}void GLSLProgram::printActiveAttribs(){    GLint i;    GLint count;    GLint size; // size of the variable    GLenum type; // type of the variable (float, vec3 or mat4, etc)    const GLsizei bufSize = 32; // maximum name length    GLchar name[bufSize]; // variable name in GLSL    GLsizei length; // name length    glGetProgramiv(handle, GL_ACTIVE_ATTRIBUTES, &amp;count);    printf(&quot;Active Attributes: %d\n&quot;, count);    for (i = 0; i &lt; count; i++)    {        glGetActiveAttrib(handle, (GLuint)i, bufSize, &amp;length, &amp;size, &amp;type, name);        printf(&quot;Attribute #%d Type: %u Name: %s\n&quot;, i, type, name);    }}bool GLSLProgram::fileExists(const string &amp; fileName){    std::ifstream infile(fileName);    return infile.good();}int GLSLProgram::getUniformLocation(const char * name){    return glGetUniformLocation(handle, name);}</find>
+      <find>compileShaderFromString</find>
+    </findStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/src/glsl/triangle.fs" />
+        <option value="$PROJECT_DIR$/src/glsl/triangle.vs" />
+        <option value="$PROJECT_DIR$/include/GLSLProgram.h" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/cpp/GLSLProgram.cpp" />
+        <option value="$PROJECT_DIR$/README.md" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="width" value="1680" />
+    <option name="height" value="1050" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>C/C++</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clion_modern_opengl" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clion-modern-opengl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clion_modern_opengl" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clion-modern-opengl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="glsl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clion_modern_opengl" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clion-modern-opengl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cpp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clion_modern_opengl" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clion-modern-opengl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="screenshots" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clion_modern_opengl" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clion-modern-opengl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="include" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FullScreen" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/cpp" />
+      <recent name="$PROJECT_DIR$/include" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.clion_modern_opengl">
+    <configuration default="true" type="CLion_Remote" factoryName="GDB Remote Debug" remoteCommand="" symbolFile="" sysroot="">
+      <method />
+    </configuration>
+    <configuration default="true" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" PASS_PARENT_ENVS_2="true" TEST_MODE="SUITE_TEST">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" PASS_PARENT_ENVS_2="true" TEST_MODE="SUITE_TEST">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="CompoundRunConfigurationType" factoryName="Compound Run Configuration">
+      <method />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="clion-modern-opengl" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="clion-modern-opengl" />
+      <method />
+    </configuration>
+    <configuration default="true" type="XSLT" factoryName="XSLT">
+      <option name="myOutputFile" />
+      <option name="myOpenOutputFile" value="false" />
+      <option name="myOpenInBrowser" value="false" />
+      <option name="mySmartErrorHandling" value="true" />
+      <option name="myRunnerPort" value="34873" />
+      <option name="myVmArguments" />
+      <option name="myWorkingDirectory" />
+      <option name="myModule" />
+      <option name="myJdk" />
+      <parameters />
+      <OutputType value="CONSOLE" save-to-file="false" />
+      <FileType name="XML" />
+      <JdkChoice value="FROM_MODULE" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="clion-modern-opengl" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="clion-modern-opengl" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="clion-modern-opengl" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="py.test">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="clion-modern-opengl" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="clion_modern_opengl" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="clion_modern_opengl" TARGET_NAME="clion_modern_opengl" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="clion_modern_opengl" RUN_TARGET_NAME="clion_modern_opengl">
+      <envs />
+      <method />
+    </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Application.Build All" />
+      <item index="1" class="java.lang.String" itemvalue="Application.clion_modern_opengl" />
+    </list>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1a23c56a-3a00-4a84-8345-bc6265173550" name="Default" comment="" />
+      <created>1503753779473</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1503753779473</updated>
+      <workItem from="1503753781075" duration="1854000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1854000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38285145" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901296" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21535394" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14761905" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/glsl/triangle.fs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/glsl/triangle.vs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/GLSLProgram.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="7" column="18" lean-forward="false" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+          <folding>
+            <element signature="e#85#102#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="288">
+            <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cpp/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1817">
+          <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cpp/GLSLProgram.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="201" column="36" lean-forward="false" selection-start-line="201" selection-start-column="36" selection-end-line="201" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

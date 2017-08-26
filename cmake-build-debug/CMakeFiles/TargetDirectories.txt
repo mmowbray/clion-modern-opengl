@@ -1,0 +1,3 @@
+/Users/mmowbray/clion-modern-opengl/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/mmowbray/clion-modern-opengl/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/mmowbray/clion-modern-opengl/cmake-build-debug/CMakeFiles/clion_modern_opengl.dir

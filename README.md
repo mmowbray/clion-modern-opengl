@@ -14,7 +14,7 @@ Plumbing includes use of a VAO, a VBO, GLFW callbacks, uniform variables, and a 
 
 Clion uses CMake which should simplify using GLFW3, GLEW, and GLM.
 
-Be sure to set the correct working directory for the current build configuration in CLion.
+⚠️ Be sure to set the correct working directory for the current build configuration in CLion.
 
 ### MacOS
 

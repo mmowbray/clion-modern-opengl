@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.o"
+  "CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.o"
   "CMakeFiles/clion_modern_opengl.dir/src/cpp/GLSLProgram.cpp.o"
   "clion_modern_opengl.pdb"
   "clion_modern_opengl"

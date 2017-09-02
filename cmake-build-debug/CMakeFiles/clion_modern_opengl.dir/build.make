@@ -57,28 +57,28 @@ include CMakeFiles/clion_modern_opengl.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/clion_modern_opengl.dir/flags.make
 
-CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.o: CMakeFiles/clion_modern_opengl.dir/flags.make
-CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.o: ../src/cpp/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mmowbray/clion-modern-opengl/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.o -c /Users/mmowbray/clion-modern-opengl/src/cpp/main.cpp
+CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.o: CMakeFiles/clion_modern_opengl.dir/flags.make
+CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.o: ../src/cpp/App.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/mmowbray/clion-modern-opengl/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.o -c /Users/mmowbray/clion-modern-opengl/src/cpp/App.cpp
 
-CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/mmowbray/clion-modern-opengl/src/cpp/main.cpp > CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.i
+CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/mmowbray/clion-modern-opengl/src/cpp/App.cpp > CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.i
 
-CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/mmowbray/clion-modern-opengl/src/cpp/main.cpp -o CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.s
+CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/mmowbray/clion-modern-opengl/src/cpp/App.cpp -o CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.s
 
-CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.o.requires:
+CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.o.requires:
 
-.PHONY : CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.o.requires
+.PHONY : CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.o.requires
 
-CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.o.provides: CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.o.requires
-	$(MAKE) -f CMakeFiles/clion_modern_opengl.dir/build.make CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.o.provides.build
-.PHONY : CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.o.provides
+CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.o.provides: CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.o.requires
+	$(MAKE) -f CMakeFiles/clion_modern_opengl.dir/build.make CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.o.provides.build
+.PHONY : CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.o.provides
 
-CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.o.provides.build: CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.o
+CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.o.provides.build: CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.o
 
 
 CMakeFiles/clion_modern_opengl.dir/src/cpp/GLSLProgram.cpp.o: CMakeFiles/clion_modern_opengl.dir/flags.make
@@ -107,13 +107,13 @@ CMakeFiles/clion_modern_opengl.dir/src/cpp/GLSLProgram.cpp.o.provides.build: CMa
 
 # Object files for target clion_modern_opengl
 clion_modern_opengl_OBJECTS = \
-"CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.o" \
+"CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.o" \
 "CMakeFiles/clion_modern_opengl.dir/src/cpp/GLSLProgram.cpp.o"
 
 # External object files for target clion_modern_opengl
 clion_modern_opengl_EXTERNAL_OBJECTS =
 
-clion_modern_opengl: CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.o
+clion_modern_opengl: CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.o
 clion_modern_opengl: CMakeFiles/clion_modern_opengl.dir/src/cpp/GLSLProgram.cpp.o
 clion_modern_opengl: CMakeFiles/clion_modern_opengl.dir/build.make
 clion_modern_opengl: /usr/local/lib/libGLEW.dylib
@@ -127,7 +127,7 @@ CMakeFiles/clion_modern_opengl.dir/build: clion_modern_opengl
 
 .PHONY : CMakeFiles/clion_modern_opengl.dir/build
 
-CMakeFiles/clion_modern_opengl.dir/requires: CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.o.requires
+CMakeFiles/clion_modern_opengl.dir/requires: CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.o.requires
 CMakeFiles/clion_modern_opengl.dir/requires: CMakeFiles/clion_modern_opengl.dir/src/cpp/GLSLProgram.cpp.o.requires
 
 .PHONY : CMakeFiles/clion_modern_opengl.dir/requires

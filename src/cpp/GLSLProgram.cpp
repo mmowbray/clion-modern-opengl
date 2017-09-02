@@ -23,19 +23,17 @@ bool GLSLProgram::compileShaderFromString(const string & source, GLuint type)
     glShaderSource(shaderID, 1, &SourcePointer, nullptr);
     glCompileShader(shaderID);
 
-    // Check if the compiling worked
+    // Check if the compilation worked
     GLint isCompiled = 0;
     glGetShaderiv(shaderID, GL_COMPILE_STATUS, &isCompiled);
+
     if (isCompiled == GL_TRUE)
     {
-        //linked = true;
         glAttachShader(handle, shaderID);
         printf("Shader compiled successfully.\n");
-        return true;
     }
     else
     {
-
         GLint maxLength = 0;
         glGetShaderiv(shaderID, GL_INFO_LOG_LENGTH, &maxLength);
 
@@ -43,11 +41,11 @@ bool GLSLProgram::compileShaderFromString(const string & source, GLuint type)
             std::vector<char> infoLog(maxLength + 1);
             glGetShaderInfoLog(shaderID, maxLength, nullptr, infoLog.data());
             logString = string(std::begin(infoLog), std::end(infoLog));
-            printf("One or more error were encountered while compiling this shader.\n");
+            printf("One or more errors were encountered while compiling this shader.\n");
         }
-
-        return false;
     }
+
+    return isCompiled == GL_TRUE;
 }
 
 bool GLSLProgram::compileShaderFromFile(const char * fileName, GLuint type)
@@ -64,11 +62,9 @@ bool GLSLProgram::compileShaderFromFile(const char * fileName, GLuint type)
 
             return compileShaderFromString(shaderCode, type);
         }
-
-        return true;
-    }else{
-        logString = "The specified shader file was not found.";
     }
+
+    logString = "The specified shader file was not found.";
     return false;
 }
 
@@ -212,7 +208,6 @@ void GLSLProgram::printActiveUniforms()
     for (i = 0; i < count; i++)
     {
         glGetActiveUniform(handle, (GLuint)i, bufSize, &length, &size, &type, name);
-
         printf("Uniform #%d Type: %u Name: %s\n", i, type, name);
     }
 }
@@ -235,7 +230,6 @@ void GLSLProgram::printActiveAttribs()
     for (i = 0; i < count; i++)
     {
         glGetActiveAttrib(handle, (GLuint)i, bufSize, &length, &size, &type, name);
-
         printf("Attribute #%d Type: %u Name: %s\n", i, type, name);
     }
 }

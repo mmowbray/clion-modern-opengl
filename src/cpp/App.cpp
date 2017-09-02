@@ -53,7 +53,7 @@ int main()
     GLFWwindow* window;
 
     if (!glfwInit())
-        return -1;
+        exit(1);
 
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -70,7 +70,7 @@ int main()
     if (!window)
     {
         glfwTerminate();
-        return -1;
+        exit(1);
     }
 
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
@@ -81,7 +81,7 @@ int main()
 
     if (glewInit() != GLEW_OK)
     {
-        return -1;
+        exit(1);
     }
 
     shaderProgram = new GLSLProgram();
@@ -128,7 +128,7 @@ int main()
 
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
-    projection_matrix = glm::perspective(45.0f, (GLfloat)DEFAULT_WINDOW_HEIGHT / (GLfloat)DEFAULT_WINDOW_WIDTH, 0.1f, 100.0f);
+    projection_matrix = glm::perspective(45.0f, (GLfloat)DEFAULT_WINDOW_WIDTH / (GLfloat)DEFAULT_WINDOW_HEIGHT, 0.1f, 100.0f);
     glEnable(GL_MULTISAMPLE);
 
     while (!glfwWindowShouldClose(window))
@@ -155,5 +155,5 @@ int main()
     }
 
     cleanUp();
-    return 0;
+    exit(0);
 }

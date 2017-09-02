@@ -86,10 +86,10 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/mmowbray/clion-modern-opengl/src/cpp/GLSLProgram.cpp">
+		<Unit filename="/Users/mmowbray/clion-modern-opengl/src/cpp/App.cpp">
 			<Option target="clion_modern_opengl"/>
 		</Unit>
-		<Unit filename="/Users/mmowbray/clion-modern-opengl/src/cpp/main.cpp">
+		<Unit filename="/Users/mmowbray/clion-modern-opengl/src/cpp/GLSLProgram.cpp">
 			<Option target="clion_modern_opengl"/>
 		</Unit>
 		<Unit filename="/Users/mmowbray/clion-modern-opengl/CMakeLists.txt">

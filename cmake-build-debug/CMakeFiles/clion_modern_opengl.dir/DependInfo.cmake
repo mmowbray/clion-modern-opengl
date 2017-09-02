@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/Users/mmowbray/clion-modern-opengl/src/cpp/App.cpp" "/Users/mmowbray/clion-modern-opengl/cmake-build-debug/CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.o"
   "/Users/mmowbray/clion-modern-opengl/src/cpp/GLSLProgram.cpp" "/Users/mmowbray/clion-modern-opengl/cmake-build-debug/CMakeFiles/clion_modern_opengl.dir/src/cpp/GLSLProgram.cpp.o"
-  "/Users/mmowbray/clion-modern-opengl/src/cpp/main.cpp" "/Users/mmowbray/clion-modern-opengl/cmake-build-debug/CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

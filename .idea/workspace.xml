@@ -22,36 +22,25 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="272">
+              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="144">
-                <caret line="9" column="45" lean-forward="true" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
-                <folding />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cpp/main.cpp">
+      <file leaf-file-name="App.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/cpp/App.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1817">
-              <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
-              <folding />
+            <state relative-caret-position="160">
+              <caret line="106" column="25" lean-forward="true" selection-start-line="106" selection-start-column="25" selection-end-line="106" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -59,8 +48,8 @@
       <file leaf-file-name="GLSLProgram.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cpp/GLSLProgram.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="201" column="36" lean-forward="false" selection-start-line="201" selection-start-column="36" selection-end-line="201" selection-end-column="36" />
+            <state relative-caret-position="2432">
+              <caret line="152" column="18" lean-forward="false" selection-start-line="152" selection-start-column="18" selection-end-line="152" selection-end-column="18" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -68,11 +57,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="triangle.vs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/glsl/triangle.vs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="GLSLProgram.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/include/GLSLProgram.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="7" column="18" lean-forward="false" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+            <state relative-caret-position="240">
+              <caret line="15" column="45" lean-forward="false" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
               <folding>
                 <element signature="e#85#102#0" expanded="true" />
               </folding>
@@ -86,7 +85,17 @@
     <findStrings>
       <find>del</find>
       <find>#include &quot;GLSLProgram.h&quot;#include &lt;vector&gt;#include &lt;fstream&gt;#include &quot;glm/gtc/type_ptr.hpp&quot;using glm::vec3;using glm::vec4;using glm::mat3;using glm::mat4;GLSLProgram::GLSLProgram(){    handle = glCreateProgram();    linked = false;}bool GLSLProgram::compileShaderFromString(const string &amp; source, GLuint type){    GLuint shaderID = glCreateShader(type);    // Compile Shader    char const * SourcePointer = source.c_str();    glShaderSource(shaderID, 1, &amp;SourcePointer, nullptr);    glCompileShader(shaderID);    // Check if the compiling worked    GLint isCompiled = 0;    glGetShaderiv(shaderID, GL_COMPILE_STATUS, &amp;isCompiled);    if (isCompiled == GL_TRUE)    {        //linked = true;        glAttachShader(handle, shaderID);        printf(&quot;Shader compiled successfully.\n&quot;);        return true;    }    else    {        GLint maxLength = 0;        glGetShaderiv(shaderID, GL_INFO_LOG_LENGTH, &amp;maxLength);        if (maxLength &gt; 0) {            std::vector&lt;char&gt; infoLog(maxLength + 1);            glGetShaderInfoLog(shaderID, maxLength, nullptr, infoLog.data());            logString = string(std::begin(infoLog), std::end(infoLog));            printf(&quot;One or more error were encountered while compiling this shader.\n&quot;);        }        return false;    }}bool GLSLProgram::compileShaderFromFile(const char * fileName, GLuint type){    if(fileExists(fileName))    {        string shaderCode;        std::ifstream ShaderStream(fileName, std::ios::in);        if (ShaderStream.is_open()) {            std::string Line = &quot;&quot;;            while (getline(ShaderStream, Line))                shaderCode += &quot;\n&quot; + Line;            ShaderStream.close();            return compileShaderFromString(shaderCode, type);        }        return true;    }else{        logString = &quot;The specified shader file was not found.&quot;;    }    return false;}bool GLSLProgram::link(){    glLinkProgram(handle);    // Check if the linking worked    GLint isLinked = 0;    glGetProgramiv(handle, GL_LINK_STATUS, &amp;isLinked);    if(isLinked == GL_TRUE)    {        linked = true;        printf(&quot;Shader program linked successfully.\n&quot;);    }else    {        GLint maxLength = 0;        glGetProgramiv(handle, GL_INFO_LOG_LENGTH, &amp;maxLength);        std::vector&lt;char&gt; infoLog(maxLength);        glGetShaderInfoLog(handle, maxLength, NULL, infoLog.data());        logString = string(begin(infoLog), end(infoLog));        //The program is useless now.        glDeleteProgram(handle);    }    return linked;}void GLSLProgram::use(){    if (linked)        glUseProgram(handle);}string GLSLProgram::log(){    return logString;}int GLSLProgram::getHandle(){    return handle;}bool GLSLProgram::isLinked(){    return linked;}void GLSLProgram::bindAttribLocation(GLuint location, const char * name){    glBindAttribLocation(handle, location, name);}void GLSLProgram::bindFragDataLocation(GLuint location, const char * name){    glBindFragDataLocation(handle, location, name);}void GLSLProgram::setUniform(const char *name, float x, float y, float z){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform3f(location, x, y, z);}void GLSLProgram::setUniform(const char *name, const vec3 &amp; v){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform3fv(location, 1, value_ptr(v));}void GLSLProgram::setUniform(const char *name, const vec4 &amp; v){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform4fv(location, 1, value_ptr(v));}void GLSLProgram::setUniform(const char *name, const mat4 &amp; m){    GLint location = getUniformLocation(name);    if (location != -1)        glUniformMatrix4fv(location, 1, GL_FALSE, value_ptr(m));}void GLSLProgram::setUniform(const char *name, const mat3 &amp; m){    GLint location = getUniformLocation(name);    if (location != -1)        glUniformMatrix3fv(location, 1, GL_FALSE, value_ptr(m));}void GLSLProgram::setUniform(const char *name, float val){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform1f(location, val);}void GLSLProgram::setUniform(const char *name, int val){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform1i(location, val);}void GLSLProgram::setUniform(const char *name, bool val){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform1i(location, val);}void GLSLProgram::printActiveUniforms(){    GLint i;    GLint count;    GLint size; // size of the variable    GLenum type; // type of the variable (float, vec3 or mat4, etc)    const GLsizei bufSize = 32; // maximum name length    GLchar name[bufSize]; // variable name in GLSL    GLsizei length; // name length    glGetProgramiv(handle, GL_ACTIVE_UNIFORMS, &amp;count);    printf(&quot;Active Uniforms: %d\n&quot;, count);    for (i = 0; i &lt; count; i++)    {        glGetActiveUniform(handle, (GLuint)i, bufSize, &amp;length, &amp;size, &amp;type, name);        printf(&quot;Uniform #%d Type: %u Name: %s\n&quot;, i, type, name);    }}void GLSLProgram::printActiveAttribs(){    GLint i;    GLint count;    GLint size; // size of the variable    GLenum type; // type of the variable (float, vec3 or mat4, etc)    const GLsizei bufSize = 32; // maximum name length    GLchar name[bufSize]; // variable name in GLSL    GLsizei length; // name length    glGetProgramiv(handle, GL_ACTIVE_ATTRIBUTES, &amp;count);    printf(&quot;Active Attributes: %d\n&quot;, count);    for (i = 0; i &lt; count; i++)    {        glGetActiveAttrib(handle, (GLuint)i, bufSize, &amp;length, &amp;size, &amp;type, name);        printf(&quot;Attribute #%d Type: %u Name: %s\n&quot;, i, type, name);    }}bool GLSLProgram::fileExists(const string &amp; fileName){    std::ifstream infile(fileName);    return infile.good();}int GLSLProgram::getUniformLocation(const char * name){    return glGetUniformLocation(handle, name);}#include &quot;GLSLProgram.h&quot;#include &lt;vector&gt;#include &lt;fstream&gt;#include &quot;glm/gtc/type_ptr.hpp&quot;using glm::vec3;using glm::vec4;using glm::mat3;using glm::mat4;GLSLProgram::GLSLProgram(){    handle = glCreateProgram();    linked = false;}bool GLSLProgram::compileShaderFromString(const string &amp; source, GLuint type){    GLuint shaderID = glCreateShader(type);    // Compile Shader    char const * SourcePointer = source.c_str();    glShaderSource(shaderID, 1, &amp;SourcePointer, nullptr);    glCompileShader(shaderID);    // Check if the compiling worked    GLint isCompiled = 0;    glGetShaderiv(shaderID, GL_COMPILE_STATUS, &amp;isCompiled);    if (isCompiled == GL_TRUE)    {        //linked = true;        glAttachShader(handle, shaderID);        printf(&quot;Shader compiled successfully.\n&quot;);        return true;    }    else    {        GLint maxLength = 0;        glGetShaderiv(shaderID, GL_INFO_LOG_LENGTH, &amp;maxLength);        if (maxLength &gt; 0) {            std::vector&lt;char&gt; infoLog(maxLength + 1);            glGetShaderInfoLog(shaderID, maxLength, nullptr, infoLog.data());            logString = string(std::begin(infoLog), std::end(infoLog));            printf(&quot;One or more error were encountered while compiling this shader.\n&quot;);        }        return false;    }}bool GLSLProgram::compileShaderFromFile(const char * fileName, GLuint type){    if(fileExists(fileName))    {        string shaderCode;        std::ifstream ShaderStream(fileName, std::ios::in);        if (ShaderStream.is_open()) {            std::string Line = &quot;&quot;;            while (getline(ShaderStream, Line))                shaderCode += &quot;\n&quot; + Line;            ShaderStream.close();            return compileShaderFromString(shaderCode, type);        }        return true;    }else{        logString = &quot;The specified shader file was not found.&quot;;    }    return false;}bool GLSLProgram::link(){    glLinkProgram(handle);    // Check if the linking worked    GLint isLinked = 0;    glGetProgramiv(handle, GL_LINK_STATUS, &amp;isLinked);    if(isLinked == GL_TRUE)    {        linked = true;        printf(&quot;Shader program linked successfully.\n&quot;);    }else    {        GLint maxLength = 0;        glGetProgramiv(handle, GL_INFO_LOG_LENGTH, &amp;maxLength);        std::vector&lt;char&gt; infoLog(maxLength);        glGetShaderInfoLog(handle, maxLength, NULL, infoLog.data());        logString = string(begin(infoLog), end(infoLog));        //The program is useless now.        glDeleteProgram(handle);    }    return linked;}void GLSLProgram::use(){    if (linked)        glUseProgram(handle);}string GLSLProgram::log(){    return logString;}int GLSLProgram::getHandle(){    return handle;}bool GLSLProgram::isLinked(){    return linked;}void GLSLProgram::bindAttribLocation(GLuint location, const char * name){    glBindAttribLocation(handle, location, name);}void GLSLProgram::bindFragDataLocation(GLuint location, const char * name){    glBindFragDataLocation(handle, location, name);}void GLSLProgram::setUniform(const char *name, float x, float y, float z){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform3f(location, x, y, z);}void GLSLProgram::setUniform(const char *name, const vec3 &amp; v){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform3fv(location, 1, value_ptr(v));}void GLSLProgram::setUniform(const char *name, const vec4 &amp; v){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform4fv(location, 1, value_ptr(v));}void GLSLProgram::setUniform(const char *name, const mat4 &amp; m){    GLint location = getUniformLocation(name);    if (location != -1)        glUniformMatrix4fv(location, 1, GL_FALSE, value_ptr(m));}void GLSLProgram::setUniform(const char *name, const mat3 &amp; m){    GLint location = getUniformLocation(name);    if (location != -1)        glUniformMatrix3fv(location, 1, GL_FALSE, value_ptr(m));}void GLSLProgram::setUniform(const char *name, float val){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform1f(location, val);}void GLSLProgram::setUniform(const char *name, int val){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform1i(location, val);}void GLSLProgram::setUniform(const char *name, bool val){    GLint location = getUniformLocation(name);    if (location != -1)        glUniform1i(location, val);}void GLSLProgram::printActiveUniforms(){    GLint i;    GLint count;    GLint size; // size of the variable    GLenum type; // type of the variable (float, vec3 or mat4, etc)    const GLsizei bufSize = 32; // maximum name length    GLchar name[bufSize]; // variable name in GLSL    GLsizei length; // name length    glGetProgramiv(handle, GL_ACTIVE_UNIFORMS, &amp;count);    printf(&quot;Active Uniforms: %d\n&quot;, count);    for (i = 0; i &lt; count; i++)    {        glGetActiveUniform(handle, (GLuint)i, bufSize, &amp;length, &amp;size, &amp;type, name);        printf(&quot;Uniform #%d Type: %u Name: %s\n&quot;, i, type, name);    }}void GLSLProgram::printActiveAttribs(){    GLint i;    GLint count;    GLint size; // size of the variable    GLenum type; // type of the variable (float, vec3 or mat4, etc)    const GLsizei bufSize = 32; // maximum name length    GLchar name[bufSize]; // variable name in GLSL    GLsizei length; // name length    glGetProgramiv(handle, GL_ACTIVE_ATTRIBUTES, &amp;count);    printf(&quot;Active Attributes: %d\n&quot;, count);    for (i = 0; i &lt; count; i++)    {        glGetActiveAttrib(handle, (GLuint)i, bufSize, &amp;length, &amp;size, &amp;type, name);        printf(&quot;Attribute #%d Type: %u Name: %s\n&quot;, i, type, name);    }}bool GLSLProgram::fileExists(const string &amp; fileName){    std::ifstream infile(fileName);    return infile.good();}int GLSLProgram::getUniformLocation(const char * name){    return glGetUniformLocation(handle, name);}</find>
+      <find>log()</find>
+      <find>perspec</find>
+      <find>uniform</find>
+      <find>uniforms</find>
       <find>compileShaderFromString</find>
+      <find>compileShaderFromFile</find>
+      <find>float</find>
+      <find>linked =</find>
+      <find>linked = false</find>
+      <find>name:</find>
+      <find>return</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -95,10 +104,12 @@
         <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/src/glsl/triangle.fs" />
         <option value="$PROJECT_DIR$/src/glsl/triangle.vs" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/cpp/main.cpp" />
         <option value="$PROJECT_DIR$/include/GLSLProgram.h" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/cpp/GLSLProgram.cpp" />
-        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/cpp/App.cpp" />
       </list>
     </option>
   </component>
@@ -393,35 +404,37 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1503753779473</updated>
-      <workItem from="1503753781075" duration="2068000" />
+      <workItem from="1503753781075" duration="3305000" />
+      <workItem from="1504002402300" duration="606000" />
+      <workItem from="1504356191449" duration="8845000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2068000" />
+    <option name="totallyTimeSpent" value="12756000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12916666" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38285145" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901296" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21535394" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14761905" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38285145" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32901296" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1994018" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3998006" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -429,31 +442,37 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/glsl/triangle.fs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/glsl/triangle.vs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cpp/App.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cpp/GLSLProgram.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3216">
+          <caret line="201" column="36" lean-forward="false" selection-start-line="201" selection-start-column="36" selection-end-line="201" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -467,21 +486,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cpp/main.cpp">
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1817">
-          <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+        <state relative-caret-position="352">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cpp/GLSLProgram.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
+        <state relative-caret-position="3216">
           <caret line="201" column="36" lean-forward="false" selection-start-line="201" selection-start-column="36" selection-end-line="201" selection-end-column="36" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/GLSLProgram.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="7" column="18" lean-forward="false" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+          <folding>
+            <element signature="e#85#102#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cpp/App.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="4" column="20" lean-forward="false" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/glsl/triangle.fs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -490,9 +536,62 @@
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="144">
             <caret line="9" column="45" lean-forward="true" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
-            <folding />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/GL/glew.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-10154">
+          <caret line="917" column="37" lean-forward="true" selection-start-line="917" selection-start-column="37" selection-end-line="917" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/GLSLProgram.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="15" column="45" lean-forward="false" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
+          <folding>
+            <element signature="e#85#102#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cpp/GLSLProgram.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2432">
+          <caret line="152" column="18" lean-forward="false" selection-start-line="152" selection-start-column="18" selection-end-line="152" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/glsl/triangle.vs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cpp/App.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="106" column="25" lean-forward="true" selection-start-line="106" selection-start-column="25" selection-end-line="106" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -123,6 +123,33 @@ clion_modern_opengl/fast:
 	$(MAKE) -f CMakeFiles/clion_modern_opengl.dir/build.make CMakeFiles/clion_modern_opengl.dir/build
 .PHONY : clion_modern_opengl/fast
 
+src/cpp/App.o: src/cpp/App.cpp.o
+
+.PHONY : src/cpp/App.o
+
+# target to build an object file
+src/cpp/App.cpp.o:
+	$(MAKE) -f CMakeFiles/clion_modern_opengl.dir/build.make CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.o
+.PHONY : src/cpp/App.cpp.o
+
+src/cpp/App.i: src/cpp/App.cpp.i
+
+.PHONY : src/cpp/App.i
+
+# target to preprocess a source file
+src/cpp/App.cpp.i:
+	$(MAKE) -f CMakeFiles/clion_modern_opengl.dir/build.make CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.i
+.PHONY : src/cpp/App.cpp.i
+
+src/cpp/App.s: src/cpp/App.cpp.s
+
+.PHONY : src/cpp/App.s
+
+# target to generate assembly for a file
+src/cpp/App.cpp.s:
+	$(MAKE) -f CMakeFiles/clion_modern_opengl.dir/build.make CMakeFiles/clion_modern_opengl.dir/src/cpp/App.cpp.s
+.PHONY : src/cpp/App.cpp.s
+
 src/cpp/GLSLProgram.o: src/cpp/GLSLProgram.cpp.o
 
 .PHONY : src/cpp/GLSLProgram.o
@@ -150,33 +177,6 @@ src/cpp/GLSLProgram.cpp.s:
 	$(MAKE) -f CMakeFiles/clion_modern_opengl.dir/build.make CMakeFiles/clion_modern_opengl.dir/src/cpp/GLSLProgram.cpp.s
 .PHONY : src/cpp/GLSLProgram.cpp.s
 
-src/cpp/main.o: src/cpp/main.cpp.o
-
-.PHONY : src/cpp/main.o
-
-# target to build an object file
-src/cpp/main.cpp.o:
-	$(MAKE) -f CMakeFiles/clion_modern_opengl.dir/build.make CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.o
-.PHONY : src/cpp/main.cpp.o
-
-src/cpp/main.i: src/cpp/main.cpp.i
-
-.PHONY : src/cpp/main.i
-
-# target to preprocess a source file
-src/cpp/main.cpp.i:
-	$(MAKE) -f CMakeFiles/clion_modern_opengl.dir/build.make CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.i
-.PHONY : src/cpp/main.cpp.i
-
-src/cpp/main.s: src/cpp/main.cpp.s
-
-.PHONY : src/cpp/main.s
-
-# target to generate assembly for a file
-src/cpp/main.cpp.s:
-	$(MAKE) -f CMakeFiles/clion_modern_opengl.dir/build.make CMakeFiles/clion_modern_opengl.dir/src/cpp/main.cpp.s
-.PHONY : src/cpp/main.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -186,12 +186,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... clion_modern_opengl"
+	@echo "... src/cpp/App.o"
+	@echo "... src/cpp/App.i"
+	@echo "... src/cpp/App.s"
 	@echo "... src/cpp/GLSLProgram.o"
 	@echo "... src/cpp/GLSLProgram.i"
 	@echo "... src/cpp/GLSLProgram.s"
-	@echo "... src/cpp/main.o"
-	@echo "... src/cpp/main.i"
-	@echo "... src/cpp/main.s"
 .PHONY : help
 
 

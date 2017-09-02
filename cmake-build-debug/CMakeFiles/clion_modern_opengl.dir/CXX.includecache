@@ -14,17 +14,7 @@ GL/glew.h
 glm/mat4x2.hpp
 ../include/glm/mat4x2.hpp
 
-/Users/mmowbray/clion-modern-opengl/src/cpp/GLSLProgram.cpp
-GLSLProgram.h
-/Users/mmowbray/clion-modern-opengl/src/cpp/GLSLProgram.h
-vector
--
-fstream
--
-glm/gtc/type_ptr.hpp
-/Users/mmowbray/clion-modern-opengl/src/cpp/glm/gtc/type_ptr.hpp
-
-/Users/mmowbray/clion-modern-opengl/src/cpp/main.cpp
+/Users/mmowbray/clion-modern-opengl/src/cpp/App.cpp
 GL/glew.h
 -
 GLFW/glfw3.h
@@ -35,6 +25,16 @@ glm/glm.hpp
 /Users/mmowbray/clion-modern-opengl/src/cpp/glm/glm.hpp
 glm/gtc/matrix_transform.hpp
 /Users/mmowbray/clion-modern-opengl/src/cpp/glm/gtc/matrix_transform.hpp
+
+/Users/mmowbray/clion-modern-opengl/src/cpp/GLSLProgram.cpp
+GLSLProgram.h
+/Users/mmowbray/clion-modern-opengl/src/cpp/GLSLProgram.h
+vector
+-
+fstream
+-
+glm/gtc/type_ptr.hpp
+/Users/mmowbray/clion-modern-opengl/src/cpp/glm/gtc/type_ptr.hpp
 
 /usr/local/include/GL/glew.h
 stddef.h

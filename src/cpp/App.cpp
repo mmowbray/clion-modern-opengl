@@ -1,4 +1,4 @@
-#include <GL/glew.h>
+#include <OpenGL/gl3.h>
 #include <GLFW/glfw3.h>
 #include <GLSLProgram.h>
 
@@ -76,13 +76,6 @@ int main()
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     glfwSetCursorPosCallback(window, cursor_pos_callback);
     glfwMakeContextCurrent(window);
-
-    glewExperimental = GL_TRUE;
-
-    if (glewInit() != GLEW_OK)
-    {
-        exit(1);
-    }
 
     shaderProgram = new GLSLProgram();
 

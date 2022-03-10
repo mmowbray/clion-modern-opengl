@@ -2,7 +2,7 @@
 #define CLION_MODERN_OPENGL_GLSLPROGRAM_H
 
 #include <string>
-#include <GL/glew.h>
+#include <OpenGL/gl3.h>
 #include "glm/mat4x2.hpp"
 
 using std::string;

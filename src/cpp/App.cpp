@@ -130,7 +130,7 @@ int main()
 
         GLfloat now = (GLfloat)glfwGetTime();
 
-        triangle_model_matrix = glm::rotate(glm::mat4(), (float)sin(now), glm::vec3(0.0f, 0.0f, 1.0f));
+        triangle_model_matrix = glm::rotate(glm::mat4(1.0f), (float)sin(now), glm::vec3(0.0f, 0.0f, 1.0f));
         view_matrix = glm::lookAt(camera_position, glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
         shaderProgram->setUniform("model_matrix", triangle_model_matrix);

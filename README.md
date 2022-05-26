@@ -22,7 +22,7 @@ Brew has up-to-date versions of all three dependencies.
 
 ```
 brew update
-brew install glfw glew glm
+brew install glfw glm
 ```
 
 ### Windows

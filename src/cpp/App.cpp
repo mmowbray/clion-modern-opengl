@@ -1,4 +1,4 @@
-#include <GL/glew.h>
+#include <OpenGL/gl3.h>
 #include <GLFW/glfw3.h>
 #include <GLSLProgram.h>
 
@@ -77,13 +77,6 @@ int main()
     glfwSetCursorPosCallback(window, cursor_pos_callback);
     glfwMakeContextCurrent(window);
 
-    glewExperimental = GL_TRUE;
-
-    if (glewInit() != GLEW_OK)
-    {
-        exit(1);
-    }
-
     shaderProgram = new GLSLProgram();
 
     if(!shaderProgram->compileShaderFromFile("src/glsl/triangle.vs", GL_VERTEX_SHADER))
@@ -137,7 +130,7 @@ int main()
 
         GLfloat now = (GLfloat)glfwGetTime();
 
-        triangle_model_matrix = glm::rotate(glm::mat4(), (float)sin(now), glm::vec3(0.0f, 0.0f, 1.0f));
+        triangle_model_matrix = glm::rotate(glm::mat4(1.0f), (float)sin(now), glm::vec3(0.0f, 0.0f, 1.0f));
         view_matrix = glm::lookAt(camera_position, glm::vec3(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
         shaderProgram->setUniform("model_matrix", triangle_model_matrix);
